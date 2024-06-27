@@ -45,11 +45,12 @@ $hotels = [
 ];
 
 
-if($hotels['parking'] == true){
-    echo 'Presente';
-}else{
-    echo 'Non presente';
-}
+
+//if($hotels['parking'] == true){
+  //  echo 'Presente';
+//}else{
+  //  echo 'Non presente';
+//}
 ?>
 
 
@@ -61,28 +62,77 @@ if($hotels['parking'] == true){
     <title>PHP Hotel</title>
 </head>
 <body>
-    <ul>
-        <?php foreach($hotels as $hotel){?>
+
+<table class="table">
+<?php foreach($hotels as $hotel){?>
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col">Parcheggio</th>
+            <th scope="col">Valutazione</th>
+            <th scope="col">Distanza dal centro</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <?php echo $hotel['name']; ?>
+            </td>
+            <td>
+                <?php echo $hotel['description']; ?>:
+            </td>
+            <td>
+                <?php echo $hotel['parking']; ?>:
+            </td>
+            <td>
+                <?php echo $hotel['vote']; ?>
+            </td>
+            <td>
+                <?php echo $hotel['distance_to_center']; ?> m 
+            </td>
+        </tr>
+    </tbody>
+<?php }?>
+</table>
+
+
+
+    <!--<ul>
+        <php foreach($hotels as $hotel){?>
             <li>
                 <h2>
-                    Nome: <?php echo $hotel['name']; ?>
+                    Nome: <php echo $hotel['name']; ?>
                 </h2>
                 <h3>
-                    <?php echo $hotel['description']; ?>:
+                    <php echo $hotel['description']; ?>:
                 </h3>
                 <p>
-                    parcheggio: <?php echo $hotel['parking']; ?>:
+                    parcheggio: <php echo $hotel['parking']; ?>:
                 </p>
                 <h5> 
-                    Valutazione: <?php echo $hotel['vote']; ?>
+                    Valutazione: <php echo $hotel['vote']; ?>
                 </h5>
                 <p>
-                    Distanza dal centro: <?php echo $hotel['distance_to_center']; ?> m 
+                    Distanza dal centro: <php echo $hotel['distance_to_center']; ?> m 
                 </p>
             </li>
-        <?php }?>
-    </ul>
+        <php }?>
+    </ul> -->
     
+
+        <!--bootstrap-->
+
+<script 
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" 
+    crossorigin="anonymous">
+</script>
+<script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" 
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous">
+</script>
 </body>
 </html>
 
