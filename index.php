@@ -4,6 +4,15 @@
 //Prima stampate in pagina i dati, senza preoccuparvi dello stile.
 //Dopo aggiungete Bootstrap e mostrate le informazioni con una tabella.
 
+//Milestone 2
+//Aggiungere un form ad inizio pagina che tramite una richiesta GET permetta di filtrare gli hotel che hanno un parcheggio.
+
+
+//Milestone 3 
+//Aggiungere un secondo campo al form che permetta di filtrare gli hotel per voto
+//(es. inserisco 3 ed ottengo tutti gli hotel che hanno un voto di tre stelle o superiore)
+
+
 $hotels = [
 
     [
@@ -44,6 +53,18 @@ $hotels = [
 
 ];
 
+$message="";
+
+if(empty($_GET['parking']) || empty($_GET['vote'])){
+    $message ="Errore";
+}elseif(!is_numeric($_GET['vote'])){
+    $message= 'Errore';
+}else{
+    $message= $hotel['parking'];
+    $message= $hotel['vote'];
+}
+    echo $message;
+
 
 
 //if($hotels['parking'] == true){
@@ -62,6 +83,18 @@ $hotels = [
     <title>PHP Hotel</title>
 </head>
 <body>
+
+<form action="./index.php" method="GET">
+    <div>
+        <label for="parking">Parcheggio</label>
+        <input type="text" name="parking" id="parking">
+    </div>
+    <div>
+        <label for="vote">Valutazione</label>
+        <input type="number" name="vote" id="vote">
+    </div>
+    <button type="submit">Cerca</button>
+</form>
 
 <table class="table">
 <?php foreach($hotels as $hotel){?>
