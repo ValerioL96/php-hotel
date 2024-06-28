@@ -80,25 +80,34 @@ if(empty($_GET['parking']) || empty($_GET['vote'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+    crossorigin="anonymous">
     <title>PHP Hotel</title>
 </head>
 <body>
 
-<form action="./index.php" method="GET">
-    <div>
+<form action="./index.php" method="GET" class="row col-12 align-items-center">
+    <div class="row col-3 mx-3">
         <label for="parking">Parcheggio</label>
-        <input type="text" name="parking" id="parking">
+        <select class="form-select" id="parking">
+            <option value="0">Yes</option>
+            <option value="1">No</option>
+        </select>
     </div>
-    <div>
+    <div class="row col-3 mx-3">
         <label for="vote">Valutazione</label>
-        <input type="number" name="vote" id="vote">
+        <input type="number" name="vote" id="vote" min="1" max="5">
     </div>
-    <button type="submit">Cerca</button>
+    <div class="row col-3 mx-3 ">
+        <button type="submit">Cerca</button>
+    </div>
+    
 </form>
 
-<table class="table">
-<?php foreach($hotels as $hotel){?>
-    <thead>
+<table class="table table-dark table-striped">
+<thead>
         <tr>
             <th scope="col">Nome</th>
             <th scope="col">Descrizione</th>
@@ -107,26 +116,17 @@ if(empty($_GET['parking']) || empty($_GET['vote'])){
             <th scope="col">Distanza dal centro</th>
         </tr>
     </thead>
+    <?php foreach($hotels as $hotel){?>
     <tbody>
         <tr>
+        <?php foreach($hotel as $key=>  $value){?>
             <td>
-                <?php echo $hotel['name']; ?>
+                <?php echo $hotel[$key]; ?>
             </td>
-            <td>
-                <?php echo $hotel['description']; ?>:
-            </td>
-            <td>
-                <?php echo $hotel['parking']; ?>:
-            </td>
-            <td>
-                <?php echo $hotel['vote']; ?>
-            </td>
-            <td>
-                <?php echo $hotel['distance_to_center']; ?> m 
-            </td>
+            <?php }?>
         </tr>
     </tbody>
-<?php }?>
+    <?php }?>
 </table>
 
 
@@ -156,16 +156,6 @@ if(empty($_GET['parking']) || empty($_GET['vote'])){
 
         <!--bootstrap-->
 
-<script 
-    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" 
-    crossorigin="anonymous">
-</script>
-<script 
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" 
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-    crossorigin="anonymous">
-</script>
 </body>
 </html>
 
